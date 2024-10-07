@@ -3,18 +3,18 @@ package javaBlackjack;
 import java.util.ArrayList;
 
 
-//The Hand class represents the player's card hand
+//The Hand class represents the card hand
 public class Hand {
 	
-	//ArrayList of card objects that make up the players hand
+	//ArrayList of card objects that make up the hand
 	private ArrayList<Card> cards;
-	//Variable to keep track of the player's total hand value
+	//Variable to keep track of the total hand value
 	private int totalValue;
-	//Variable to keep track of the player's ace count
+	//Variable to keep track of the ace count
 	private int aceCount;
 	
 	
-	//Constructor for the hand class. Initializes the player's hand
+	//Constructor for the hand class. Initializes the hand
 	public Hand() {
 		//Initializes the list of cards 
 		cards = new ArrayList<>();
@@ -24,7 +24,7 @@ public class Hand {
 		aceCount = 0;
 	}
 	
-	// Adds a card to the player's hand and tracks the total value
+	// Adds a card to the hand and tracks the total value
 	public void addCard(Card card) {
 		cards.add(card);
 		totalValue += card.getValue();
@@ -51,7 +51,7 @@ public class Hand {
 		return totalValue;
 	}
 	
-	//Returns the player's hand
+	//Returns the hand card list
 	public ArrayList<Card> getCards(){
 		return cards;
 	}
