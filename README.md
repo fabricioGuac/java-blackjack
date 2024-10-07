@@ -19,7 +19,7 @@ N/A
 
 ## Credits
 
-N/A
+This project is based on the [Blackjack Java](https://github.com/ImKennyYip/blackjack-java) code by [ImKennyYip](https://github.com/ImKennyYip). I have modified and built upon the original code to suit the needs of my project.
 
 
 ## License
