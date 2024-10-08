@@ -37,6 +37,6 @@ public class Card {
 	
 	//Returns the filepath of the image associated with the card
 	public String getImagePath() {
-		return "./cards/" + toString() + ".png";
+		return "/cards/" + toString() + ".png";
 	}
 }

@@ -29,6 +29,13 @@ public class BlackjackGame {
 	
 	//Initializes the game by dealing two cards to both the player and the dealer
 	public void startGame() {
+		//Sets the game over variable to false
+		gameOver = false;
+		
+		//Clears the hands by creating a new Hand instance
+		playerHand = new Hand();
+		dealerHand = new Hand();
+		
 		//Deals two cards to the player
 		playerHand.addCard(deck.dealCard());
 		playerHand.addCard(deck.dealCard());
@@ -101,4 +108,5 @@ public class BlackjackGame {
 	public boolean isGameOver() {
 		return gameOver;
 	}
+	
 }

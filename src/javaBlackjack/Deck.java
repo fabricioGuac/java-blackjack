@@ -43,8 +43,19 @@ public class Deck {
 	
 	//Deals the top card from the deck
 	public Card dealCard() {
+		
+		//Checks if the deck is empty
+		if(deck.isEmpty()) {
+			System.out.println("Using a new deck of cards");
+			//Builds a new deck and shuffles it
+			buildDeck();
+			shuffleDeck();
+		}
+		
 		//Removes the last card from the deck simulating a top card deal
 		return deck.remove(deck.size() -1);
 	}
+	
+	
 	
 }

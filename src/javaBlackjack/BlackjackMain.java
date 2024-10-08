@@ -2,6 +2,6 @@ package javaBlackjack;
 
 public class BlackjackMain {
 	public static void main(String[] args) throws Exception {
-		System.out.println("Hello world");
+		new BlackjackGUI();
 	}
 }
