@@ -9,8 +9,12 @@ public class BlackjackGame {
 	private Hand dealerHand;
 	//The player's hand of cards
 	private Hand playerHand;
-	// A flag indicating whether the game is over
+	//A flag indicating whether the game is over
 	private boolean gameOver;
+	//The player's current wallet
+	private int playerWallet;
+	//The player's bet
+	private int playerBet;
 	
 	//Constructor for the BlackjackGame class
 	public BlackjackGame() {
@@ -22,13 +26,22 @@ public class BlackjackGame {
 		this.playerHand = new Hand();
 		//The game starts with the game over flag set to false
 		this.gameOver = false;
+		//Initializes the wallet with 100
+		this.playerWallet = 100;
+		//Initializes the bet with 0
+		this.playerBet = 0;
 		
 		//Deals the initial two cards for the player and the dealer
-		startGame();
+//		startGame();
 	}
 	
 	//Initializes the game by dealing two cards to both the player and the dealer
-	public void startGame() {
+	public void startGame(int betAmount) {
+		
+		playerBet = betAmount;
+		playerWallet -= playerBet;
+		System.out.println(playerWallet);
+		
 		//Sets the game over variable to false
 		gameOver = false;
 		
@@ -57,6 +70,18 @@ public class BlackjackGame {
 		}
 	}
 	
+	
+	//Restarts the game after each round
+	public void restartGame() {
+		//Sets the game over variable to false
+				gameOver = false;
+		//If the player runs out of money refills the wallet		
+				if (playerWallet == 0) {
+					System.out.println("You have gone bankrupt, play responsibly");
+					playerWallet = 100;
+				}
+	}
+	
 	//Action for the player to stay (stop taking cards)
 	public void playerStay() {
 		if(!gameOver) {
@@ -77,24 +102,36 @@ public class BlackjackGame {
 		
 		//If the player exceeds 21 the player busts and the dealer wins
 		if(playerValue > 21) {
+			System.out.println("player busts player wallet: " + playerWallet);
 			return "Player BUSTS! Dealer WINS";
 		}
 		//If the dealer exceeds 21 the dealer busts and the player wins
 		if(dealerValue > 21) {
+			playerWallet += playerBet *2;
+			System.out.println("dealer busts player wallet: " + playerWallet);
 			return "Dealer BUSTS! Player WINS";
 		}
 		
 		//If neither busts compare the hand's values to determine the winner (closer to 21)
 		if(playerValue > dealerValue) {
+			 playerWallet += playerBet * 2;
+			 System.out.println("player wins player wallet: " + playerWallet);
 			return "Player WINS";
 		} else if (playerValue < dealerValue) {
+			System.out.println("player lost player wallet :"+playerWallet);
 			return "Dealer WINS";
 		} else {
+			playerWallet += playerBet;
+			System.out.println("tie player wallet: "+playerWallet);
 			return "It's a Tie";
 		}
 	}
 	
-	//Return's the player's hand
+
+
+	
+	
+	//Returns the player's hand
 	public Hand getPlayerHand() {
 		return playerHand;
 	}
@@ -107,6 +144,16 @@ public class BlackjackGame {
 	//Returns whether the game has ended
 	public boolean isGameOver() {
 		return gameOver;
+	}
+	
+	//Returns the player's wallet
+	public int getPlayerWallet() {
+		return playerWallet;
+	}
+	
+	//Return the player's bet
+	public int getPlayerBet() {
+		return playerBet;
 	}
 	
 }
