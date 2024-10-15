@@ -17,22 +17,24 @@ public class Deck {
 	}
 	
 	
-	//Creates a standard deck of 52 cards
+	//Creates a standard deck with 8 sets of 52 cards to simulate a real casino scenario
 	private void buildDeck() {
 		deck = new ArrayList<>();
-		//Card vales
+		//Card values
 		String[] values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 		//Card types (Clubs, Diamonds, Hearts, Spades)
 		String[] types = {"C", "D", "H", "S"};
 		
-		
-		//Nested loop to create cards and add them to the deck
+		//Loop to create 8 decks
+		for (int d =0; d < 8; d++) {
+		//Nested loops to create cards and add them to the deck
 		for (int i =0; i < types.length; i++) {
 			for (int j = 0;j < values.length; j++) {
 				Card card = new Card(values[j], types[i]);
 				deck.add(card);
 			}
-		}
+		  }
+	   }	
 	}
 	
 	//Shuffles the deck of cards to randomize the numbers
