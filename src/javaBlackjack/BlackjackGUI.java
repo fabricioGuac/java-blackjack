@@ -220,7 +220,7 @@ public class BlackjackGUI {
 	
 	//Method to draw the game elements (cards, winner message) on the screen
 	private void drawGame(Graphics g) {
-		
+				
 		
 		//Draws the player's cards
 		for (int i = 0; i < game.getPlayerHand().getCards().size(); i++) {
@@ -232,8 +232,22 @@ public class BlackjackGUI {
 			g.drawImage(cardImage, 20 + i * 115, 350, 110, 154, null);
 		}
 		
+		
+		
 		//Draws the dealer's cards
-		for (int i = 0; i < game.getDealerHand().getCards().size(); i++) {
+		if(!stayButton.isEnabled()) {
+			//If the player has not stayed show the hidden card
+			Card hiddenCard = game.getDealerHand().getCards().get(0);
+			Image hiddenCardImage = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
+			g.drawImage(hiddenCardImage, 20, 20, 110, 154, null);
+		} else {
+			//If the player has not stayed show the back of the card
+			Image hiddenCardBackImage = new ImageIcon(getClass().getResource("/cards/BACK.png")).getImage();
+	        g.drawImage(hiddenCardBackImage, 20, 20, 110, 154, null);
+		}
+		
+		
+		for (int i = 1; i < game.getDealerHand().getCards().size(); i++) {
 			//Retrieves the card at the current index from the dealer's hand
 			Card card = game.getDealerHand().getCards().get(i);
 			//Retrieves the image associated with the card using its image path
