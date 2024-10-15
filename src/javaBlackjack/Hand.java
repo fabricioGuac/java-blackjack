@@ -56,4 +56,9 @@ public class Hand {
 		return cards;
 	}
 	
+	//Returns whether a hand is a natural blackjack (Ace + 10 value card) or not
+	public boolean isBlackjack() {
+	    return getTotalValue() == 21 && cards.size() == 2;
+	}
+
 }

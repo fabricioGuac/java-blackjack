@@ -100,6 +100,27 @@ public class BlackjackGame {
 		int playerValue = playerHand.getTotalValue();
 		int dealerValue = dealerHand.getTotalValue();
 		
+		//Checks if there is a natural blackjack (Ace + 10 value card)
+		boolean playerHasBlackjack = playerHand.isBlackjack();
+		boolean dealerHasBlackjack = dealerHand.isBlackjack();
+		
+		//Checks if both have natural blackjacks
+		if(playerHasBlackjack && dealerHasBlackjack) {
+			//If both have blackjack it is a tie
+			playerWallet += playerBet;
+			System.out.println("tie player wallet: "+playerWallet);
+			return "It's a Tie";
+		} else if (playerHasBlackjack) {
+			//If the player has a natural blackjack wins 3:2
+			playerWallet += playerBet * 2.5;
+			System.out.println("Player wins with a blackjack player wallet: "+ playerWallet);
+			return "Player WINS with a BLACKJACK!!";
+		} else if (dealerHasBlackjack) {
+			System.out.println("Player losts player wallet: " + playerWallet);
+			return "Dealer WINS with a BLACKJACK!!";
+		}
+		
+		
 		//If the player exceeds 21 the player busts and the dealer wins
 		if(playerValue > 21) {
 			System.out.println("player busts player wallet: " + playerWallet);
