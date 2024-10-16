@@ -17,7 +17,7 @@ public class Card {
 		return value + '-' + type;
 	}
 	
-	//Returns the numeric value of the card in the context of jackblack
+	//Returns the numeric value of the card in the context of blackjack
 	public int getValue() {
 		
 		//Checks if the value is Ace, Queen, Jack or King
@@ -29,6 +29,18 @@ public class Card {
 		return Integer.parseInt(value);
 	}
 	
+	//Returns the hi-lo value of the card
+	public int getHiLoValue() {
+		//Value of low cards
+		if("23456".contains(value)) {
+			return 1;
+		//Value of high cards
+		} else if ("10JQKA".contains(value)) {
+			return -1;
+		}
+	 //Value of neutral cards
+	 return 0;
+	}
 	
 	//Checks if the card is an Ace
 	public boolean isAce() {

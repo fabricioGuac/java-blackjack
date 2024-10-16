@@ -58,6 +58,9 @@ public class Deck {
 		return deck.remove(deck.size() -1);
 	}
 	
-	
+	//Returns the remaining decks
+	public double getRemainingDecks() {
+		return (double) deck.size() /52;
+	}
 	
 }

@@ -34,6 +34,7 @@ public class BlackjackGUI {
 	//Label to display the player wallet
 	private JLabel walletLabel;
 	
+	
 	//Constructor to initialize the GUI and the game
 	public BlackjackGUI() {
 		//Initializes a new BlackjackGame instance 
@@ -220,6 +221,7 @@ public class BlackjackGUI {
 	
 	//Method to draw the game elements (cards, winner message) on the screen
 	private void drawGame(Graphics g) {
+		
 				
 		
 		//Draws the player's cards
@@ -255,6 +257,7 @@ public class BlackjackGUI {
 			//Draws the card image on the screen at the specified position adjusting for the index
 			g.drawImage(cardImage, 20 + i * 115, 20, 110, 154, null);
 		}
+
 		
 		//Sets the font style and size for the message
 		g.setFont(new Font("Arial", Font.BOLD, 30));
@@ -284,6 +287,11 @@ public class BlackjackGUI {
 			//Draws the winner message at the specified position on the screen
 			g.drawString("Place a bet between $0 and $" + game.getPlayerWallet(),350, 330);
 		}
+		
+		//Display the number of decks remaining
+		g.drawString("Remaining deck: " + String.format("%.2f", game.getRemainingDecks()),850, 50);
+		//Displays the running count 
+		g.drawString("Running count: " + game.getRunningCount(),850, 100 );
 	}
 	
 	//Method to check if the game is over

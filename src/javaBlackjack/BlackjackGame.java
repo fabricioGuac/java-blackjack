@@ -15,6 +15,8 @@ public class BlackjackGame {
 	private int playerWallet;
 	//The player's bet
 	private int playerBet;
+	//The running count
+	private int runningCount;
 	
 	//Constructor for the BlackjackGame class
 	public BlackjackGame() {
@@ -30,9 +32,9 @@ public class BlackjackGame {
 		this.playerWallet = 100;
 		//Initializes the bet with 0
 		this.playerBet = 0;
+		//Initializes the running count in 0
+		this.runningCount = 0;
 		
-		//Deals the initial two cards for the player and the dealer
-//		startGame();
 	}
 	
 	//Initializes the game by dealing two cards to both the player and the dealer
@@ -49,20 +51,23 @@ public class BlackjackGame {
 		playerHand = new Hand();
 		dealerHand = new Hand();
 		
-		//Deals two cards to the player
-		playerHand.addCard(deck.dealCard());
-		playerHand.addCard(deck.dealCard());
+		//Resets the running count at the start of each round
+		resetRunningCount();
 		
-		//Deals two cards to the dealer
+		//Deals two cards to the player
+		playerHand.addCard(dealCardRunningCountUpdate());
+		playerHand.addCard(dealCardRunningCountUpdate());
+		
+		//Deals two cards to the dealer (hidden card does not update the running count)
 		dealerHand.addCard(deck.dealCard());
-		dealerHand.addCard(deck.dealCard());
+		dealerHand.addCard(dealCardRunningCountUpdate());
 	}
 	
 	//Action for the player to hit (take an additional card)
 	public void playerHit() {
 		if(!gameOver) {
 			//Deals one more card to the player hand
-			playerHand.addCard(deck.dealCard());
+			playerHand.addCard(dealCardRunningCountUpdate());
 			//If the player's total exceeds 21 the player busts and the game ends 
 			if(playerHand.getTotalValue() > 21) {
 				gameOver = true;
@@ -87,7 +92,7 @@ public class BlackjackGame {
 		if(!gameOver) {
 			//Dealer keeps drawing cards until their hand value is at least 17
 			while (dealerHand.getTotalValue() < 17) {
-				dealerHand.addCard(deck.dealCard());
+				dealerHand.addCard(dealCardRunningCountUpdate());
 			}
 			//After the dealer finishes drawing the game ends
 			gameOver = true;
@@ -148,9 +153,31 @@ public class BlackjackGame {
 		}
 	}
 	
-
-
 	
+	private Card dealCardRunningCountUpdate() {
+		//Deals the card
+		Card dealtCard = deck.dealCard();
+		//Updates the running count
+        runningCount += dealtCard.getHiLoValue();
+        System.out.println(runningCount);
+        //Returns the card dealt
+        return dealtCard;
+	}
+	
+	//Resets the running count
+	private void resetRunningCount() {
+		runningCount = 0;
+	}
+
+	//Returns the remaining decks
+	public double getRemainingDecks() {
+		return deck.getRemainingDecks();
+	}
+	
+	//returns the running count
+	public int getRunningCount() {
+		return runningCount;
+	}
 	
 	//Returns the player's hand
 	public Hand getPlayerHand() {
