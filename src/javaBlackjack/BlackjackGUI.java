@@ -292,6 +292,8 @@ public class BlackjackGUI {
 		g.drawString("Remaining deck: " + String.format("%.2f", game.getRemainingDecks()),850, 50);
 		//Displays the running count 
 		g.drawString("Running count: " + game.getRunningCount(),850, 100 );
+		//Displays the true count
+		g.drawString("True count: " +String.format("%.2f", game.getTrueCount()),850, 150 );
 	}
 	
 	//Method to check if the game is over

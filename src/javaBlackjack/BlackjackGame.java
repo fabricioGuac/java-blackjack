@@ -174,6 +174,12 @@ public class BlackjackGame {
 		return deck.getRemainingDecks();
 	}
 	
+	//Returns the true count
+	public double getTrueCount() {
+		//Due to limited players causing low running cards the true count does not privide enough 
+		return (double) getRunningCount() / deck.getRemainingDecks();
+	}
+	
 	//returns the running count
 	public int getRunningCount() {
 		return runningCount;
