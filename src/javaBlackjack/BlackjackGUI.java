@@ -232,6 +232,13 @@ public class BlackjackGUI {
 			Image cardImage = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
 			//Draws the card image on the screen at the specified position adjusting for the index
 			g.drawImage(cardImage, 20 + i * 115, 350, 110, 154, null);
+			
+			//Sets the font style and size for the value
+			g.setFont(new Font("Arial", Font.BOLD, 30));
+			//Sets the color for the value
+			g.setColor(Color.WHITE);
+			//Draws the hi-lo value of the card
+			g.drawString( "" +card.getHiLoValue(), 20 + i * 115 + 40, 340);
 		}
 		
 		
@@ -256,6 +263,13 @@ public class BlackjackGUI {
 			Image cardImage = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
 			//Draws the card image on the screen at the specified position adjusting for the index
 			g.drawImage(cardImage, 20 + i * 115, 20, 110, 154, null);
+			
+			//Sets the font style and size for the value
+			g.setFont(new Font("Arial", Font.BOLD, 30));
+			//Sets the color for the value
+			g.setColor(Color.WHITE);
+			//Draws the hi-lo value of the card
+			g.drawString( "" +card.getHiLoValue(), 20 + i * 115 + 40, 210);
 		}
 
 		
@@ -271,7 +285,7 @@ public class BlackjackGUI {
 		//Displays the winner message if the game is over
 		if(game.isGameOver()) {
 			//Draws the winner message at the specified position on the screen
-			g.drawString(game.checkWinner(), 200, 300);
+			g.drawString(game.checkWinner(), 200, 275);
 			
 			//Updates the wallet label
 			System.out.println("Wallet: in game over "+game.getPlayerWallet());
